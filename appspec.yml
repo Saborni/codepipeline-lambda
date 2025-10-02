@@ -4,6 +4,6 @@ Resources:
       Type: AWS::Lambda::Function
       Properties:
         Name: "sabs-lambda"
-        Alias: "live" # Specify the alias for your Lambda function
-        CurrentVersion: "$LATEST" # Specify the current version of your Lambda function
-        TargetVersion: "1"
+        Alias: "live"
+        CurrentVersion: "1"
+        TargetVersion: "2"
