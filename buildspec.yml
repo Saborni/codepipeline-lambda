@@ -15,8 +15,8 @@ phases:
       - aws lambda update-function-code --function-name sabs-lambda --zip-file fileb://lambda_dep.zip
       - CURRENT_VERSION=$(aws lambda get-alias --function-name sabs-lambda --name live --query 'FunctionVersion' --output text)
       - echo "Current alias points to version $CURRENT_VERSION"
-      - NEW_VERSION=$(aws lambda publish-version --function-name sabs-lambda --query 'Version' --output text)
-      - echo "Published version $NEW_VERSION"
+      - TARGET_VERSION=$(aws lambda publish-version --function-name sabs-lambda --query 'Version' --output text)
+      - echo "Published version $TARGET_VERSION"
       - sed -i "s/Current_Version/$CURRENT_VERSION/g" appspec.yml
       - sed -i "s/Target_Version/$TARGET_VERSION/g" appspec.yml
       - cat appspec.yml
