@@ -7,17 +7,16 @@ phases:
   build:
     commands:
       - pip3 install -r requirements.txt -t .
+      - zip -r lambda_dep.zip . -x "buildspec.yml"
+      - ls -larth
       - echo "Package created..."
   post_build:
     commands:
-      - echo "Package created..."
+      - aws lambda update-function-code --function-name sabs-lambda --zip-file fileb://lambda_dep.zip
+      - NEW_VERSION=$(aws lambda publish-version --function-name sabs-lambda --query 'Version' --output text)
+      - echo "Published version $NEW_VERSION"
+
 artifacts:
   files:
-    - "*/**"
-    - lambda_function.py
-    - requirements.txt
     - appspec.yml
-  name: lambda_dep
-  exclude-paths:
-    - buildspec.yml
-      
+    - lambda_dep.zip
