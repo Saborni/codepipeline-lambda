@@ -10,6 +10,6 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps({
             'message': message,
-            'version': '1.1'
+            'version': '1.2'
         })
     }
