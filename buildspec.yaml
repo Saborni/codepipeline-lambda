@@ -1,0 +1,18 @@
+version: 0.2
+        
+phases:
+  pre_build:
+    commands:
+      - echo "Creating Lambda package..."
+  build:
+    commands:
+      - pip3 install -r requirements.txt -t .
+      - zip -r lambda_dep.zip . -x "buildspec.yaml"
+      - echo "Package created..."
+  post_build:
+    commands:
+      - echo "Package created..."
+artifacts:
+  files:
+    - lambda_dep.zip
+      
