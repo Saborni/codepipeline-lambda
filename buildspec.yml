@@ -7,12 +7,14 @@ phases:
   build:
     commands:
       - pip3 install -r requirements.txt -t .
-      - zip -r lambda_dep.zip . -x "buildspec.yml"
       - echo "Package created..."
   post_build:
     commands:
       - echo "Package created..."
 artifacts:
   files:
-    - lambda_dep.zip
+    - "*/**"
+  name: lambda_dep
+  exclude-paths:
+    - buildspec.yml
       
